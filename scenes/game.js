@@ -17,18 +17,24 @@ export default class BreakBrickScene extends Phaser.Scene {
   create() {
     this.add.image(400, 300, "fondo");
     
-    this.rectangulos = this.physics.add.staticGroup();
-    
-    this.rectangulos.create(400, 200, "rectangulo");
+    this.rectangulos = this.physics.add.image(400, 100, "rectangulo");
+    this.rectangulos.setImmovable(true);
 
     this.plataforma = this.physics.add.image(400, 550, "plataforma");
     this.plataforma.setCollideWorldBounds(true);
+    this.plataforma.setImmovable(true);
 
     this.pelota = this.physics.add.image(400, 500, "pelota").setCollideWorldBounds(true);
     this.pelota.setBounce(1);
     this.pelota.setVelocityY(-150);
 
     this.controles = this.input.keyboard.createCursorKeys();
+
+    this.physics.add.collider(this.pelota, this.plataforma);
+
+    this.physics.add.collider(this.pelota, this.rectangulos, () => {
+      this.rectangulos.destroy();
+    });
   }
 
   update() {
