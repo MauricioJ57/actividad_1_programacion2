@@ -6,4 +6,18 @@ export default class Plataforma extends Phaser.Physics.GameObjects.Sprite {
         this.body.setImmovable(true);
         this.body.setCollideWorldBounds(true);
     }
+
+    moverX(velocidad) {
+        this.x += velocidad;
+    }
+
+    update() {
+    if (this.controles.left.isDown) {
+      this.plataforma.moverX(-300);
+    } else if (this.controles.right.isDown) {
+      this.plataforma.moverX(300);
+    } else {
+      this.plataforma.moverX(0);
+    }
+    }
 }

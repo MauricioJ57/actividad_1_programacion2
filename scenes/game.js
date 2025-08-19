@@ -1,3 +1,4 @@
+/*import Plataforma from "../classes/plataforma";*/
 export default class BreakBrickScene extends Phaser.Scene {
   constructor() {
     super("game");
@@ -20,6 +21,8 @@ export default class BreakBrickScene extends Phaser.Scene {
     this.rectangulos = this.physics.add.image(400, 100, "rectangulo");
     this.rectangulos.setImmovable(true);
 
+    /*this.plataforma = new Plataforma(this, 400, 550, "plataforma", this.controles);*/
+
     this.plataforma = this.physics.add.image(400, 550, "plataforma");
     this.plataforma.setCollideWorldBounds(true);
     this.plataforma.setImmovable(true);
@@ -38,6 +41,7 @@ export default class BreakBrickScene extends Phaser.Scene {
   }
 
   update() {
+    /*this.plataforma.update()*/
     if (this.controles.left.isDown) {
       this.plataforma.setVelocityX(-300);
     } else if (this.controles.right.isDown) {
